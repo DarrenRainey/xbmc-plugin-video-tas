@@ -6,20 +6,20 @@ from operator import itemgetter, attrgetter
 from TasAPI import common as common
 from TasAPI import cache as cache
 
-
 # plugin constants
 __plugin__ = "Tool Assisted Game Videos"
 __author__ = "Insayne (Code) & HannaK (Graphics)"
 __url__ = "http://code.google.com/p/xbmc-plugin-video-tas/"
 __svn_url__ = "http://code.google.com/p/xbmc-plugin-video-tas/"
-__version__ = "0.9"
+__version__ = "0.91"
 __svn_revision__ = "$Revision$"
 __XBMC_Revision__ = xbmc.getInfoLabel('System.BuildVersion')
 __settings__ = xbmcaddon.Addon(id='plugin.video.tas')
 
 # Global Settings
 set_snames = __settings__.getSetting( "snames" )
-
+set_smethod = __settings__.getSetting( "smethod" )
+set_umethod = __settings__.getSetting( "umethod" )
 #Variables
 dimg = xbmc.translatePath( os.path.join( os.getcwd(), 'Images', 'Icons' ) )
 xbmcrev = str(xbmc.getInfoLabel('System.BuildVersion'))
@@ -47,7 +47,7 @@ def Get_Categories(url):
 		fanart = common.get_category_fanthumb(name, "Fanart")
 		addDir(name,link,2,common.get_category_fanthumb(name, "Thumbnail"),fanart)
 
-def Get_RSS_Videos(url):
+def Get_RSS_Videos_fast(url):
 	global prev_letter
 	global sorting
 	sorting = common.getsorting(url)
@@ -82,10 +82,119 @@ def Get_RSS_Videos(url):
 		categories = common.get_categories(category)
 		writer = common.get_writer(name)
 		thumbnail = cache.img_getcontent(thumbnail,num,UAS)
-		url = "http://www.insayne.net/xbmc/tas.php?url=http://www.archive.org/"+link+""
+		if set_umethod=="0":
+			url = "http://www.archive.org/" + link
+		elif set_umethod=="1":
+			url = "http://www.insayne.net/xbmc/tas.php?url=http://www.archive.org/"+link+""
+		else:
+			url = "http://www.archive.org/" + link
 		addLink(common.cleanstring(name),url,thumbnail,year,plot,rating,director,writer,genre,categories,fanart,num,totalitems,date,sort_letter,duration)
 	prev_letter = "Unset"
 	return
+
+def Get_RSS_Videos_default(url):
+	global prev_letter
+	global sorting
+	sorting = common.getsorting(url)
+	sort_letter = "None"
+	link = cache.getcontent(url,UAS)
+	link = link.replace("\r", "")
+	link = link.replace("\n", "")
+	match=re.compile('<item>.+?<title>\[(.+?)\] (.+?) (.+?)</title>.+?<description>(.+?)<\/description>.+?<author>(.+?)<\/author>.+?<category>(.+?)<comments>.+?<media:thumbnail url="(.+?)" \/>(.+?)<media:community>.+?<media:starRating average="(.+?)".+?\/>.+?<pubDate>(.+?)<\/pubDate>.+?<\/item>').findall(link)
+	totalitems = len(match)
+	for num,platform,name,plot,director,categories,thumbnail,link,rating,pubdate in match:
+		link = common.get_video(link)
+		if not link=="None":
+			num = int(num)
+			year = common.get_year(pubdate)
+			date = common.get_date(pubdate)
+			duration = common.get_duration(name)
+	
+			#Sorting
+			if sorting==1:
+				if not prev_letter==name[:1]:
+					prev_letter = name[:1]
+					sort_letter = prev_letter
+				else:
+					sort_letter = "None"
+			
+			fanart = ""+str(num)+".png"
+			fanart = xbmc.translatePath( os.path.join( os.getcwd(), 'Images', 'Fanart', 'Games', fanart ) )
+			year = int(year)
+			rating = round(float(rating),2)
+			name = ""+name+" ["+str(rating)+"]"
+			director = common.clean_director(director)
+			category = "<category>"+categories+""
+			genre = common.getgenres(category)
+			categories = common.get_categories(category)
+			writer = common.get_writer(name)
+			thumbnail = cache.img_getcontent(thumbnail,num,UAS)
+			if set_umethod=="0":
+				url = "http://www.archive.org/" + link
+			elif set_umethod=="1":
+				url = "http://www.insayne.net/xbmc/tas.php?url=http://www.archive.org/"+link+""
+			else:
+				url = "http://www.archive.org/" + link
+			
+			addLink(common.cleanstring(name),url,thumbnail,year,plot,rating,director,writer,genre,categories,fanart,num,totalitems,date,sort_letter,duration)
+		else:
+			totalitems = totalitems - 1
+			#print "Omitting: " + str(num) + " " + common.get_prettyname(common.cleanstring(name)) 
+	prev_letter = "Unset"
+	return
+
+	
+def Get_RSS_Videos_strict(url):
+	global prev_letter
+	global sorting
+	sorting = common.getsorting(url)
+	sort_letter = "None"
+	link = cache.getcontent(url,UAS)
+	link = link.replace("\r", "")
+	link = link.replace("\n", "")
+	nmatch = re.compile('<item>(.+?)<\/item>').findall(link)
+	totalitems = len(nmatch)
+	for link in nmatch:
+		tmatch=re.compile('.+?<title>\[(.+?)\] (.+?) (.+?)</title>.+?<description>(.+?)<\/description>.+?<author>(.+?)<\/author>.+?<category>(.+?)<comments>.+?<media:thumbnail url="(.+?)".+?<media:content url="http://www.archive.org/(.+?)" type=".+?" medium="video" \/>.+?<media:starRating average="(.+?)".+?\/>.+?<pubDate>(.+?)<\/pubDate>.+?').findall(link)
+		for num,platform,name,plot,director,categories,thumbnail,link,rating,pubdate in tmatch:
+			if not link=="":
+				num = int(num)
+				year = common.get_year(pubdate)
+				date = common.get_date(pubdate)
+				duration = common.get_duration(name)
+
+				#Sorting
+				if sorting==1:
+					if not prev_letter==name[:1]:
+						prev_letter = name[:1]
+						sort_letter = prev_letter
+					else:
+						sort_letter = "None"
+			
+				fanart = ""+str(num)+".png"
+				fanart = xbmc.translatePath( os.path.join( os.getcwd(), 'Images', 'Fanart', 'Games', fanart ) )
+				year = int(year)
+				rating = round(float(rating),2)
+				name = ""+name+" ["+str(rating)+"]"
+				director = common.clean_director(director)
+				category = "<category>"+categories+""
+				genre = common.getgenres(category)
+				categories = common.get_categories(category)
+				writer = common.get_writer(name)
+				thumbnail = cache.img_getcontent(thumbnail,num,UAS)
+				if set_umethod=="0":
+					url = "http://www.archive.org/" + link
+				elif set_umethod=="1":
+					url = "http://www.insayne.net/xbmc/tas.php?url=http://www.archive.org/"+link+""
+				else:
+					url = "http://www.archive.org/" + link
+				addLink(common.cleanstring(name),url,thumbnail,year,plot,rating,director,writer,genre,categories,fanart,num,totalitems,date,sort_letter,duration)
+			else:
+				totalitems = totalitems - 1
+	prev_letter = "Unset"
+	return
+
+
 
 def addLink(name,url,iconimage,year,plot,rating,director,writer,genre,tagline,fanart,id,totalitems,date,sort_letter,duration):
 	global set_pnames
@@ -170,7 +279,14 @@ elif mode==1:
 		Get_Categories(url)
 
 elif mode==2:
-		Get_RSS_Videos(url)
+		if set_smethod=="0":
+			Get_RSS_Videos_fast(url)
+		elif set_smethod=="1":
+			Get_RSS_Videos_default(url)
+		elif set_smethod=="2":
+			Get_RSS_Videos_strict(url)
+		else:
+			Get_RSS_Videos(url)
 
 		
 if sorting==1:
@@ -185,6 +301,13 @@ elif sorting==2:
 	xbmcplugin.addSortMethod(int(sys.argv[1]), xbmcplugin.SORT_METHOD_LABEL)
 	xbmcplugin.addSortMethod(int(sys.argv[1]), xbmcplugin.SORT_METHOD_VIDEO_RUNTIME)
 	xbmcplugin.addSortMethod(int(sys.argv[1]), xbmcplugin.SORT_METHOD_VIDEO_RATING)
+	xbmcplugin.addSortMethod(int(sys.argv[1]), xbmcplugin.SORT_METHOD_GENRE)
+elif sorting==3:
+	# Sorting for "Notables"
+	xbmcplugin.addSortMethod(int(sys.argv[1]), xbmcplugin.SORT_METHOD_VIDEO_RATING)
+	xbmcplugin.addSortMethod(int(sys.argv[1]), xbmcplugin.SORT_METHOD_DATE)
+	xbmcplugin.addSortMethod(int(sys.argv[1]), xbmcplugin.SORT_METHOD_LABEL)
+	xbmcplugin.addSortMethod(int(sys.argv[1]), xbmcplugin.SORT_METHOD_VIDEO_RUNTIME)
 	xbmcplugin.addSortMethod(int(sys.argv[1]), xbmcplugin.SORT_METHOD_GENRE)
 
 else:

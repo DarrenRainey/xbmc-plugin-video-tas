@@ -5,6 +5,8 @@
 	<string id="30901">Icon Size</string>
 	<string id="30902">Feed Update Interval</string>
 	<string id="30903">Image Update Interval</string>
+	<string id="30904">Parsing Method</string>
+	<string id="30905">Stream Retrieval Method</string>
 	
 	 <!-- Image Selection -->
 	<string id="30950">Small</string>
@@ -27,5 +29,13 @@
 	<string id="32003">9 Months</string>
 	<string id="32004">1 Year</string>
 	<string id="32005">Never</string>
+	
+	<!-- Image Update Interval -->
+	<string id="32006">Fast (Inaccurate)</string>
+	<string id="32007">Normal</string>
+	<string id="32008">Strict (Slow)</string>
 
+	<!-- Image Update Interval -->
+	<string id="32010">Native URL</string>
+	<string id="32011">Tunneling (Slow)</string>
 </strings>

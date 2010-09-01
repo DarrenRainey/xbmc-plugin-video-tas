@@ -6,7 +6,6 @@ __settings__ = xbmcaddon.Addon(id='plugin.video.tas')
 
 # Global Settings
 set_icon_size = __settings__.getSetting( "icon_size" )
-
 def get_image_path(path):
 	global set_icon_size
 	if set_icon_size=="0":
@@ -143,8 +142,8 @@ def get_year(strvar):
 def get_date(strvar):
 	match=re.compile('.+?, (.+?) (.+?) (.+?) .+?').findall(strvar)
 	for day,mon,year in match:
-		datestring = ""+day+""+mon+""+year+""
-		date = time.strptime(datestring,"%d %b %Y")
+		datestring = day + mon + year
+		date = time.strptime(datestring,"%d%b%Y")
 	return str(time.strftime("%d.%m.%Y",date))
 	
 def clean_director(strvar):
@@ -193,12 +192,29 @@ def get_categories(strvar):
 	return categories[1:]
 
 def getsorting(url):
+	match=re.compile('http://tasvideos.org/(.+?)/.+?').findall(url)
+	for result in match:
+		category = result
+		
 	if url=="http://tasvideos.org/publications.rss":
 		sorting = 2
+	elif category=="notable-feed":
+		sorting = 3
 	else:
 		sorting = 1
 	return sorting
 
+def get_video(string):
+	link=""
+	match=re.compile('.+?<media:content url="http://www.archive.org/(.+?)" type=".+?" medium=".+?" \/>.+?').findall(string)
+	for vid in match:
+		link = vid
+	
+	if link=="":
+		link = "None"
+	return link
+	
+	
 def get_prettyname(name):
 	name = "<start>"+name+""
 	match=re.compile('<start>(.+?) by .+?').findall(name)
