@@ -286,7 +286,7 @@ elif mode==2:
 		elif set_smethod=="2":
 			Get_RSS_Videos_strict(url)
 		else:
-			Get_RSS_Videos(url)
+			Get_RSS_Videos_default(url)
 
 		
 if sorting==1:
