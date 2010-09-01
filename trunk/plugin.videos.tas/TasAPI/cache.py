@@ -164,7 +164,7 @@ def img_getcontent(link,id,UAS):
 		#print "My Interval: " + str(interval)
 		if not interval==0:
 			if img_check(filename)>interval:
-				img_download(link,id,UAS)
+				img_download(filename,link,id,UAS)
 				#print "Cache: Updating Feed"
 				content = filename
 			else:
