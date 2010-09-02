@@ -7,7 +7,7 @@ from TasAPI import common as common
 from TasAPI import cache as cache
 
 # plugin constants
-__plugin__ = "Tool Assisted Game Videos"
+__plugin__ = "Tool Assisted Speedruns"
 __author__ = "Insayne (Code) & HannaK (Graphics)"
 __url__ = "http://code.google.com/p/xbmc-plugin-video-tas/"
 __svn_url__ = "https://xbmc-plugin-video-tas.googlecode.com/svn/trunk/plugin.videos.tas/"
