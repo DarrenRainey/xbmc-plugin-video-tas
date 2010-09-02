@@ -130,14 +130,12 @@ def Get_RSS_Videos_default(url):
 				url = "http://www.insayne.net/xbmc/tas.php?url=http://www.archive.org/"+link+""
 			else:
 				url = "http://www.archive.org/" + link
-			
 			addLink(common.cleanstring(name),url,thumbnail,year,plot,rating,director,writer,genre,categories,fanart,num,totalitems,date,sort_letter,duration)
 		else:
 			totalitems = totalitems - 1
 	prev_letter = "Unset"
 	return
 
-	
 def Get_RSS_Videos_strict(url):
 	global prev_letter
 	global sorting
@@ -269,7 +267,6 @@ elif mode==2:
 			Get_RSS_Videos_strict(url)
 		else:
 			Get_RSS_Videos_default(url)
-
 		
 if sorting==1:
 	xbmcplugin.addSortMethod(int(sys.argv[1]), xbmcplugin.SORT_METHOD_LABEL)
