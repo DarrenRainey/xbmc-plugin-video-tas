@@ -12,7 +12,7 @@
   </extension>
   <extension point="xbmc.addon.metadata">
     <platform>all</platform>
-    <summary>TASVideos.org Plugin</summary>
+    <summary>TASVideos.org Streaming</summary>
     <description>If you’ve ever wanted to see how a superhuman would beat your favorite video games, you’ve come to the right place. We have videos of all the popular franchises from Super Mario Brothers and Sonic the Hedgehog down to Pokémon and Final Fantasy. No matter what genre of game you prefer, be it sports, puzzle, adventure, shooter, or popular game shows, we have it all.</description>
   </extension>
 </addon>
