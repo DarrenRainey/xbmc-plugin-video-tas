@@ -52,7 +52,7 @@ def check(fn):
     return ((time.time() - os.path.getmtime(fn))/60)
 
 def vdir():
-    dir = xbmc.translatePath(os.path.join( os.getcwd(), 'resources', 'cache', 'feeds'))
+    dir = xbmc.translatePath(os.path.join( 'special://profile/addon_data/plugin.videos.tas/', 'cache', 'feeds'))
     if os.path.isdir(dir)==False:
             os.makedirs(dir)
     return True
@@ -76,7 +76,7 @@ def getcontent(link,UAS):
 	content = ""
 	tfn = link.rsplit('/',1)
 	tfnf = tfn[-1]
-	filename = xbmc.translatePath(os.path.join( os.getcwd(), 'resources', 'cache', 'feeds', tfnf ))
+	filename = xbmc.translatePath(os.path.join( 'special://profile/addon_data/plugin.videos.tas/',  tfnf ))
 	filecheck = os.path.isfile(filename)
 	#print "Cache: Filename: "+str(filename)+"\nCheck: "+str(filecheck)+"\nURL: "+str(link)+"\nTFNF: "+tfnf+"\n\n"
 	if filecheck==False:
@@ -112,7 +112,7 @@ def img_check(fn):
     return (((time.time() - os.path.getmtime(fn))/60) / 24)
 	
 def img_vdir():
-    dir = xbmc.translatePath(os.path.join( os.getcwd(), 'resources', 'cache', 'images'))
+    dir = xbmc.translatePath(os.path.join( 'special://profile/addon_data/plugin.videos.tas/', 'cache', 'images'))
     if os.path.isdir(dir)==False:
             os.makedirs(dir)
     return True
@@ -148,7 +148,7 @@ def img_getcontent(link,id,UAS):
 	ext = ext[-1]
 	
 	tfnf = ""+str(id)+"."+ext+""
-	filename = xbmc.translatePath(os.path.join( os.getcwd(), 'resources', 'cache', 'images', tfnf ))
+	filename = xbmc.translatePath('special://profile/addon_data/plugin.videos.tas/', 'cache', 'images', tfnf ))
 	filecheck = os.path.isfile(filename)
 	#print "Cache: Filename: "+str(filename)+"\nCheck: "+str(filecheck)+"\nURL: "+str(link)+"\nTFNF: "+tfnf+"\n\n"
 	if filecheck==False:
