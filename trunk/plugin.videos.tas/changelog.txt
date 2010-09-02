@@ -1,3 +1,7 @@
+0.93
+
+- Changed Cache Directory 
+
 0.92
 
 - Enhanced Accuracy of Feed Parsing
