@@ -1,5 +1,6 @@
 0.94
 - Streamlined the representation of http://tasvideos.org/
+- Cleaned the Source
 
 0.93
 - Changed Cache Directory to comply with XBMC's standard
