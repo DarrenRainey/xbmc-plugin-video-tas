@@ -10,7 +10,7 @@ from TasAPI import cache as cache
 __plugin__ = "Tool Assisted Game Videos"
 __author__ = "Insayne (Code) & HannaK (Graphics)"
 __url__ = "http://code.google.com/p/xbmc-plugin-video-tas/"
-__svn_url__ = "http://code.google.com/p/xbmc-plugin-video-tas/"
+__svn_url__ = "https://xbmc-plugin-video-tas.googlecode.com/svn/trunk/plugin.videos.tas/"
 __version__ = "0.92"
 __svn_revision__ = "$Revision$"
 __XBMC_Revision__ = xbmc.getInfoLabel('System.BuildVersion')
