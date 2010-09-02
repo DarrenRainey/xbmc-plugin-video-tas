@@ -1,5 +1,5 @@
 #TAS Videos by Insayne
-import os,time
+import os,sys,time
 import urllib,urllib2,re
 import xbmcplugin,xbmcgui,xbmcaddon
 from operator import itemgetter, attrgetter
@@ -11,7 +11,7 @@ __plugin__ = "Tool Assisted Game Videos"
 __author__ = "Insayne (Code) & HannaK (Graphics)"
 __url__ = "http://code.google.com/p/xbmc-plugin-video-tas/"
 __svn_url__ = "http://code.google.com/p/xbmc-plugin-video-tas/"
-__version__ = "0.91"
+__version__ = "0.92"
 __svn_revision__ = "$Revision$"
 __XBMC_Revision__ = xbmc.getInfoLabel('System.BuildVersion')
 __settings__ = xbmcaddon.Addon(id='plugin.video.tas')
@@ -20,6 +20,7 @@ __settings__ = xbmcaddon.Addon(id='plugin.video.tas')
 set_snames = __settings__.getSetting( "snames" )
 set_smethod = __settings__.getSetting( "smethod" )
 set_umethod = __settings__.getSetting( "umethod" )
+
 #Variables
 dimg = xbmc.translatePath( os.path.join( os.getcwd(), 'Images', 'Icons' ) )
 xbmcrev = str(xbmc.getInfoLabel('System.BuildVersion'))
@@ -30,14 +31,14 @@ prev_letter = "Unset"
 sorting = 0
 
 def Generate_Index():
-	dimg = common.get_image_path(xbmc.translatePath( os.path.join( os.getcwd(), 'resources', 'images', 'icons', 'default' ) ))
-	latest = xbmc.translatePath( os.path.join(dimg, "latest.png"))
-	notables = xbmc.translatePath( os.path.join(dimg, "not.png"))
-	bbs = xbmc.translatePath( os.path.join(dimg, "bbs.png"))
+	dimg = common.get_image_path(xbmc.translatePath(os.path.join( os.getcwd(), 'resources', 'images', 'icons', 'default' )))
+	latest = xbmc.translatePath(os.path.join(dimg, "latest.png"))
+	notables = xbmc.translatePath(os.path.join(dimg, "not.png"))
+	bbs = xbmc.translatePath(os.path.join(dimg, "bbs.png"))
 	addDir('Latest Videos','http://tasvideos.org/publications.rss',2, latest, common.get_category_fanthumb("Latest Videos", "Fanart"))
 	addDir('Notables','http://tasvideos.org/notables.rss',1, notables, common.get_category_fanthumb("Notables", "Fanart"))
 	addDir('Browse by System','http://tasvideos.org/systems.rss',1, bbs, common.get_category_fanthumb("Browse by System", "Fanart"))
-
+	
 def Get_Categories(url):
 	link = cache.getcontent(url,UAS)
 	link = link.replace("\r", "")
@@ -55,7 +56,7 @@ def Get_RSS_Videos_fast(url):
 	link = cache.getcontent(url,UAS)
 	link = link.replace("\r", "")
 	link = link.replace("\n", "")
-	match=re.compile('<item>.+?<title>\[(.+?)\] (.+?) (.+?)</title>.+?<description>(.+?)<\/description>.+?<author>(.+?)<\/author>.+?<category>(.+?)<comments>.+?<media:thumbnail url="(.+?)".+?<media:content url="http://www.archive.org/(.+?)" type=".+?" medium="video" \/>.+?<media:starRating average="(.+?)".+?\/>.+?<pubDate>(.+?)<\/pubDate>.+?<\/item>').findall(link)
+	match=re.compile('<item>.+?<title>\[(.+?)\] (.+?) (.+?)</title>.+?<description>(.+?)<\/description>.+?<author>(.+?)<\/author>.+?<category>(.+?)<comments>.+?<media:thumbnail url="(.+?)".+?<media:content url=".+?archive.org/(.+?)" type=".+?" medium="video" \/>.+?<media:starRating average="(.+?)".+?\/>.+?<pubDate>(.+?)<\/pubDate>.+?<\/item>').findall(link)
 	totalitems = len(match)
 	for num,platform,name,plot,director,categories,thumbnail,link,rating,pubdate in match:
 		num = int(num)
@@ -139,7 +140,6 @@ def Get_RSS_Videos_default(url):
 			addLink(common.cleanstring(name),url,thumbnail,year,plot,rating,director,writer,genre,categories,fanart,num,totalitems,date,sort_letter,duration)
 		else:
 			totalitems = totalitems - 1
-			#print "Omitting: " + str(num) + " " + common.get_prettyname(common.cleanstring(name)) 
 	prev_letter = "Unset"
 	return
 
@@ -155,7 +155,7 @@ def Get_RSS_Videos_strict(url):
 	nmatch = re.compile('<item>(.+?)<\/item>').findall(link)
 	totalitems = len(nmatch)
 	for link in nmatch:
-		tmatch=re.compile('.+?<title>\[(.+?)\] (.+?) (.+?)</title>.+?<description>(.+?)<\/description>.+?<author>(.+?)<\/author>.+?<category>(.+?)<comments>.+?<media:thumbnail url="(.+?)".+?<media:content url="http://www.archive.org/(.+?)" type=".+?" medium="video" \/>.+?<media:starRating average="(.+?)".+?\/>.+?<pubDate>(.+?)<\/pubDate>.+?').findall(link)
+		tmatch=re.compile('.+?<title>\[(.+?)\] (.+?) (.+?)</title>.+?<description>(.+?)<\/description>.+?<author>(.+?)<\/author>.+?<category>(.+?)<comments>.+?<media:thumbnail url="(.+?)".+?<media:content url=".+?archive.org/(.+?)" type=".+?" medium="video" \/>.+?<media:starRating average="(.+?)".+?\/>.+?<pubDate>(.+?)<\/pubDate>.+?').findall(link)
 		for num,platform,name,plot,director,categories,thumbnail,link,rating,pubdate in tmatch:
 			if not link=="":
 				num = int(num)
@@ -219,6 +219,7 @@ def addLink(name,url,iconimage,year,plot,rating,director,writer,genre,tagline,fa
 		liz.setProperty("Fanart_image", iconimage)
 	if filecheck==True:
 		liz.setProperty("Fanart_image", fanart)
+
 	ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=url,listitem=liz,totalItems=totalitems)
 	return ok
 
@@ -229,6 +230,10 @@ def addDir(name,url,mode,iconimage,Fanart):
 	liz.setInfo( type="Video", infoLabels={ "Title": name } )
 	if not Fanart=="":
 		liz.setProperty("Fanart_image", Fanart)
+	
+	#contextmenu = common.context_remove_feed(url)
+	#liz.addContextMenuItems(contextmenu)	
+	
 	ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=True)
 	return ok
 
@@ -273,7 +278,7 @@ except:
 #print "Name: "+str(name)
 
 if mode==None or url==None or len(url)<1:
-        Generate_Index()
+		Generate_Index()
        
 elif mode==1:
 		Get_Categories(url)
