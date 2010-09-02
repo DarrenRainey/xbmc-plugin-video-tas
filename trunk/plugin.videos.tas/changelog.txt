@@ -1,0 +1,15 @@
+0.92
+
+- Enhanced Accuracy of Feed Parsing
+
+0.91
+
+- Fixed RSS Parsing Errors
+
+0.9 Beta 2
+
+- Fixed Image Downloading Crash
+
+0.9
+
+- First public release
