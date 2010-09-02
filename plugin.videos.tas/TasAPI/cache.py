@@ -124,13 +124,13 @@ def img_download(fname,url,id,UAS):
 	# Open the url
 	try:
 		f = urlopen(req)
-		print "downloading " + url
+		#print "downloading " + url
 		# Open our local file for writing
 		local_file = open(fname, "wb")
 		#Write to our local file
 		local_file.write(f.read())
 		local_file.close()
-		print "Finished"
+		#print "Finished"
 
 	#handle errors
 	except HTTPError, e:

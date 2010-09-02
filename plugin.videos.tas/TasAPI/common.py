@@ -1,3 +1,4 @@
+#TAS Videos by Insayne
 import os, time
 import urllib,urllib2,re
 import xbmc,xbmcaddon
@@ -206,7 +207,7 @@ def getsorting(url):
 
 def get_video(string):
 	link=""
-	match=re.compile('.+?<media:content url="http://www.archive.org/(.+?)" type=".+?" medium=".+?" \/>.+?').findall(string)
+	match=re.compile('.+?<media:content url="http://.+?archive.org/(.+?)" type=".+?" medium="video" />.+?').findall(string)
 	for vid in match:
 		link = vid
 	
@@ -246,7 +247,16 @@ def get_duration(name):
 		duration = "00:00:00"
 		
 	return duration
-	
+
+def context_remove_feed(url):
+	c_feed_file = xbmc.translatePath(os.path.join( os.getcwd(), 'TasAPI', 'test.py'))
+	tfn = url.rsplit('/',1)
+	tfn = tfn[-1]
+	c_feed_arg = xbmc.translatePath(os.path.join( os.getcwd(), 'resources', 'cache', 'feeds', tfn ))
+	c_feed = 'XBMC.RunScript(' + c_feed_file + ', category, removefeed, ' + c_feed_arg + ')'
+	contextmenu = [('Delete Cached Feed', c_feed,)]
+	return contextmenu
+
 def clean_from_genres(strvar):
 	string = strvar
 	string = re.sub('<category>Genre:.+?</category>', '', string)
