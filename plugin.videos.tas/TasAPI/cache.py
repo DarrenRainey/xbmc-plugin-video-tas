@@ -76,7 +76,7 @@ def getcontent(link,UAS):
 	content = ""
 	tfn = link.rsplit('/',1)
 	tfnf = tfn[-1]
-	filename = xbmc.translatePath(os.path.join( 'special://profile/addon_data/plugin.videos.tas/',  tfnf ))
+	filename = xbmc.translatePath(os.path.join( 'special://profile/addon_data/plugin.videos.tas/', 'cache', 'feeds',  tfnf ))
 	filecheck = os.path.isfile(filename)
 	#print "Cache: Filename: "+str(filename)+"\nCheck: "+str(filecheck)+"\nURL: "+str(link)+"\nTFNF: "+tfnf+"\n\n"
 	if filecheck==False:
@@ -148,7 +148,7 @@ def img_getcontent(link,id,UAS):
 	ext = ext[-1]
 	
 	tfnf = ""+str(id)+"."+ext+""
-	filename = xbmc.translatePath('special://profile/addon_data/plugin.videos.tas/', 'cache', 'images', tfnf ))
+	filename = xbmc.translatePath(os.path.join( 'special://profile/addon_data/plugin.videos.tas/', 'cache', 'images', tfnf ))
 	filecheck = os.path.isfile(filename)
 	#print "Cache: Filename: "+str(filename)+"\nCheck: "+str(filecheck)+"\nURL: "+str(link)+"\nTFNF: "+tfnf+"\n\n"
 	if filecheck==False:
