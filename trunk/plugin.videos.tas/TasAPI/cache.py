@@ -113,7 +113,7 @@ def img_download(fname,url,id,UAS):
 		local_file.write(f.read())
 		local_file.close()
 
-		except HTTPError, e:
+	except HTTPError, e:
 		print "HTTP Error:",e.code , url
 	except URLError, e:
 		print "URL Error:",e.reason , url
