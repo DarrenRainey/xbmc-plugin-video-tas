@@ -2,7 +2,7 @@
 - Fixed: Directory inconsistency for cached data
 - Fixed: URL Retrieval method (Tunneling no longer needed) and removed its Setting
 - Fixed: Retrieved URL is now always the first entry which should always be streamable.
-- Fixed: International locale (date) issue.
+- Fixed: International locale (date) issue
 - Added: New Main Index Category: Addon Utilities
 - Added: Options to clean the local Cache (Images, Feeds or both) under Addon Utilities
 - Added: Option to Download Image/Thumbnail Cache from Google Code (Much faster Experience!) for an ~5 MB File Download.
