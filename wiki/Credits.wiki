@@ -10,8 +10,16 @@
 
 = Thanks go out to... =
 
-  * *cptspiff:* Linking me (Insayne) to the XBMC-Python documentation and helping getting the project off the ground. He also has given a lot of help regarding XBMC-Python questions i've had and was always helpful. Still owe this man a Beer!
+  * *cptspiff:*
 
-  * *amet:* Breaking his head with me on how to allow cancelling urllib's retrieve
+Linking me (Insayne) to the XBMC-Python documentation and helping getting the project off the ground.
 
-If I have forgotten anyone here who was part of the project, please, don't be upset I didn't include you; It simply slipped my mind when I was working on this wiki. Drop me a line and you will be on this page too :) 
+He also has given a lot of help regarding XBMC-Python questions i've had and was always helpful. Still owe this man a Beer!
+
+  * *amet:* 
+
+Breaking his head with me on how to allow cancelling urllib's retrieve - thanks man!
+
+= In case you weren't mentioned... =
+
+If I have forgotten anyone here who was part of the project, please, don't be upset I didn't include you; It simply slipped my mind when I was working on this wiki. Drop me a line and you will be on this page too :-) 
