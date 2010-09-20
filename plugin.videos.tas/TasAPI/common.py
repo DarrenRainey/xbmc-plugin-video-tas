@@ -190,12 +190,40 @@ def get_year(strvar):
 		years = year
 	return int(years)
 	
+def get_month(abmon):
+	if (abmon=="Jan"):
+		return 1
+	elif (abmon=="Feb"):
+		return 2
+	elif (abmon=="Mar"):
+		return 3
+        elif (abmon=="Apr"):
+		return 4
+	elif (abmon=="May"):
+		return 5
+	elif (abmon=="Jun"):
+		return 6
+	elif (abmon=="Jul"):
+		return 7
+	elif (abmon=="Aug"):
+		return 8
+	elif (abmon=="Sep"):
+		return 9
+	elif (abmon=="Oct"):
+		return 10
+	elif (abmon=="Nov"):
+		return 11
+	elif (abmon=="Dec"):
+		return 12
+	raise ValueError("can't parse month abbreviation:  abmon=%s " % (monab))
+
+		
 def get_date(strvar):
 	match=re.compile('.+?, (.+?) (.+?) (.+?) .+?').findall(strvar)
-	for day,mon,year in match:
-		datestring = day + mon + year
-		date = time.strptime(datestring,"%d%b%Y")
-	return str(time.strftime("%d.%m.%Y",date))
+	for day,abmon,year in match:
+		datestring = day+"."+str(get_month(abmon))+"."+year
+	return datestring
+
 	
 def clean_director(strvar):
 	match=re.compile('.+? \((.+?)\)').findall(strvar)
