@@ -2,6 +2,9 @@
 
 = Screenshots =
 
+[http://code.google.com/p/xbmc-plugin-video-tas/wiki/Screenshots Link]
+
+
 || *Addon in the Addon List* || *Settings Context Menu* ||
 || http://xbmc-plugin-video-tas.googlecode.com/svn/wiki/images/thumbnails/tas01.png || http://xbmc-plugin-video-tas.googlecode.com/svn/wiki/images/thumbnails/tas02.png ||
 || *Settings* || *Main Categories* ||
