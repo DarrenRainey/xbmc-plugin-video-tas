@@ -1,0 +1,12 @@
+#labels Featured
+= 24th September 2010 =
+
+Well, this is embarassing... I just realized we have two major bugs in Version 1.0. 
+
+The first being the date (and thus, sorting by date) being erroneus (or just non-working); I never made sure of using double digits when submitting the date and thought XBMC could handle that fine, but apparently, it does not :)
+
+I fixed this already and it is available in the SVN trunk.
+
+The second bug, is only present in linux... Apparently it doesn't work to download the thumbnail cache. I have not yet received an error log and do not have a linux version of xbmc up and running to test and debug that. I will look into solving that issue as well before I release 1.0.1 which is then the true 1.0 :)
+
+I will most likely end up fixing this bug in the following days, but we shall see :) No promises!
