@@ -1,4 +1,13 @@
 #labels Featured
+= 25th September 2010 =
+
+Hello again!
+
+I just fixed both bugs (date & linux crash) and updated the SVN with the new source.
+The Pull request to XBMC has been sent, so in a couple of hours, 1.0.1 will have deployed to the official repository :)
+
+Enjoy!
+
 = 24th September 2010 =
 
 Well, this is embarassing... I just realized we have two major bugs in Version 1.0. 
