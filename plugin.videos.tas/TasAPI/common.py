@@ -8,7 +8,7 @@ __settings__ = xbmcaddon.Addon(id='plugin.video.tas')
 # Global Settings
 set_icon_size = __settings__.getSetting( "icon_size" )
 set_fanart_size = __settings__.getSetting( "fanart_size" )
-
+	
 # This function Resolves the URL to the Final URL
 # Used in Mode 5 
 def ResolveURL(url):
