@@ -1,4 +1,12 @@
 #labels Featured
+= 27th September 2010 =
+
+I just worked some more on the addon, as always, you can find the latest changes in the SVN. 
+
+I fixed the international language support (it crashed before) and also made the translations for german and french.
+
+In a few hours we should ammend the changes to the spanish langauge in the SVN trunk and if nothing new comes up, we will do the pull request over at XBMC :)
+
 = 25th September 2010 =
 
 Hello again!
