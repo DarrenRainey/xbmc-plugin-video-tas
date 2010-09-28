@@ -1,4 +1,11 @@
 #labels Featured
+= 28th September 2010 =
+
+And this is just an example of how fast things move sometimes :)
+Version 1.0.3 just got the pull request where we changed names to: Tool-assisted Superplays
+The Icon was also changed :)
+Enjoy
+
 = 27th September 2010 =
 
 I just worked some more on the addon, as always, you can find the latest changes in the SVN. 
