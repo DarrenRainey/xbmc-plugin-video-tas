@@ -1,3 +1,6 @@
+1.0.3
+- Updated: Changed name from Tool-assisted Speedruns to Tool-assisted Superplays (on behalf of http://tasvideos.org/'s request)
+
 1.0.2
 - Fixed: Crash on using any other language that was supported by the addon.
 - Added: German and French translation
