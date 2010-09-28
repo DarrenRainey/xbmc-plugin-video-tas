@@ -9,7 +9,11 @@
 
   * *pgoeri*: Fixed International locale Issue.
 
-= Thanks go out to... =
+= Thanks go out to... (alphabetical order) =
+
+  * *amet:* 
+
+Breaking his head with me on how to allow cancelling urllib's retrieve - thanks man!
 
   * *cptspiff:*
 
@@ -17,13 +21,13 @@ Linking me (Insayne) to the XBMC-Python documentation and helping getting the pr
 
 He also has given a lot of help regarding XBMC-Python questions i've had and was always helpful. Still owe this man a Beer!
 
-  * *amet:* 
-
-Breaking his head with me on how to allow cancelling urllib's retrieve - thanks man!
-
   * *Freezy:*
 
 For the wonderful main icon! Lovin' it! :)
+
+  * *Illari:*
+
+For going through quite an amount of videos that required fixing while the addon was in its beta stage. Without him, those videos wouldn't pop up in the addon at all. So thanks!
 
   * *Zeupar:* 
 
