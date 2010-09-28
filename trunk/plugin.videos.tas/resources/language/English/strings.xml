@@ -25,7 +25,7 @@
 	<string id="30908">(Reload this folder for your settings to apply!)</string>
 
     <!-- Dialog Title -->
-    <string id="32000">Tool-assisted Speedruns</string>
+    <string id="32000">Tool-assisted Superplays</string>
 
 	<!-- Dialog: First Startup -->
 	<string id="32001">This is the first time you are running this Addon</string>

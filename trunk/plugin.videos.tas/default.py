@@ -1,4 +1,4 @@
-#TAS Videos by Insayne
+#TAS by Insayne
 import os,sys,time
 import urllib,urllib2,re
 import xbmcplugin,xbmcgui,xbmcaddon
@@ -8,11 +8,11 @@ from TasAPI import cache as cache
 from TasAPI import utilities as util
 
 # plugin Constants
-__plugin__ = "Tool-assisted Speedruns"
+__plugin__ = "Tool-assisted Superplays"
 __author__ = "Insayne (Code) & HannaK (Graphics)"
 __url__ = "http://code.google.com/p/xbmc-plugin-video-tas/"
 __svn_url__ = "https://xbmc-plugin-video-tas.googlecode.com/svn/trunk/plugin.videos.tas/"
-__version__ = "1.0.2"
+__version__ = "1.0.3"
 __svn_revision__ = "$Revision$"
 __XBMC_Revision__ = xbmc.getInfoLabel('System.BuildVersion')
 __settings__ = xbmcaddon.Addon(id='plugin.video.tas')
