@@ -42,7 +42,7 @@
 	<string id="32016">Descarga de video finalizada</string>
 	
 	<!-- Dialog: Clean RSS Cache -->
-	<string id="32020">!OJO!: ¡NO puede deshacerse!</string>
+	<string id="32020">¡OJO!: ¡NO puede deshacerse!</string>
 	<string id="32021">¿Seguro que desea limpiar la caché del RSS?</string>
 	<string id="32022">Limpiando la caché del RSS...</string>
 	<string id="32023">Limpieza de la caché del RSS cancelada</string>
