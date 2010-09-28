@@ -25,7 +25,7 @@ He also has given a lot of help regarding XBMC-Python questions i've had and was
 
 For the wonderful main icon! Lovin' it! :)
 
-  * *Illari:*
+  * *Ilari:*
 
 For going through quite an amount of videos that required fixing while the addon was in its beta stage. Without him, those videos wouldn't pop up in the addon at all. So thanks!
 
