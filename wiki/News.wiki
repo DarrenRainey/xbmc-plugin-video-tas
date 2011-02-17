@@ -1,4 +1,8 @@
 #labels Featured
+= 17th Feburary 2011 =
+
+Hello there :D I have updated the images.zip (The Cache) to be the most current. I am also working on updating the addon for future XBMC compilance. Feature wise it will be dry, as I still don't know what else to add. Suggestions are welcome as always!
+
 = 28th September 2010 =
 
 And this is just an example of how fast things move sometimes :)
